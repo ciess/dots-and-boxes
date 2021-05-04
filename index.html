@@ -35,11 +35,11 @@
 							<div class = "msg-content display-players">
 								<div>
 									<h3>ONE PLAYER</h3>
-									<img width = "150" height = "150" src = "images/alien.png" onclick = "playerStart(0);" />
+									<img width = "150" height = "150" src = "alien.png" onclick = "playerStart(0);" />
 								</div>
 								<div>
 									<h3>TWO PLAYERS</h3>
-									<img width = "150" height = "150" src = "images/androids.png" onclick = "playerStart(1);"/>
+									<img width = "150" height = "150" src = "androids.png" onclick = "playerStart(1);"/>
 								</div>
 							</div>
 						</div>
@@ -73,10 +73,10 @@
 <!-- GAME BOARD------------------------------------- -->
 <div class = "board" id = "board">
 	<div class = "players">
-	<h1 id = "player"><img id = "arrow1" src = "images/arrow.png" width = "25" height = "25" />PLAYER 1: <span id = "playerscore">0</h1></h1>
+	<h1 id = "player"><img id = "arrow1" src = "arrow.png" width = "25" height = "25" />PLAYER 1: <span id = "playerscore">0</h1></h1>
 	<p id = "gametext">OBJECTIVE: CLAIM THE MOST BOXES</p>
 	<h1 id = "cpu">CPU: <span id = "cpuscore">0</h1>
-	<h1 id = "playertwo" style = "color:#a81414;"><img id = "arrow2" src = "images/arrow.png" width = "25" height = "25" />PLAYER 2: <span id = "player2score">0</h1>
+	<h1 id = "playertwo" style = "color:#a81414;"><img id = "arrow2" src = "arrow.png" width = "25" height = "25" />PLAYER 2: <span id = "player2score">0</h1>
 </div>
 <div class = "row">
 	<div class = "dot"></div>
@@ -280,13 +280,13 @@
 <script>
 
 // Sounds---------------------------------
-var click = new Audio("sounds/click.mp3");
-var cpuclick = new Audio("sounds/tone.mp3");
-var win = new Audio("sounds/win.mp3");
-var music = new Audio("sounds/song.mp3");
-var mouseclick = new Audio("sounds/mouseclick.mp3");
-var lose = new Audio("sounds/lose.wav");
-var playerWin = new Audio("sounds/playerwin.wav");
+var click = new Audio("click.mp3");
+var cpuclick = new Audio("tone.mp3");
+var win = new Audio("win.mp3");
+var music = new Audio("song.mp3");
+var mouseclick = new Audio("mouseclick.mp3");
+var lose = new Audio("lose.wav");
+var playerWin = new Audio("playerwin.wav");
 var tie = new Audio("tie.wav");
 music.volume = 0.6;
 // ------------------------------------------
