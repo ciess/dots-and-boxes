@@ -3,7 +3,7 @@ body, html
 	height:100%;
 	margin:0;
 	background-color: #000000;
-	background-image:url("images/background.jpg");
+	background-image:url("background.jpg");
 	background-size:cover;
 	font-family: 'VT323', monospace;
 }
@@ -200,7 +200,7 @@ p
 /*-----Game board-----*/
 .board
 {
-    background-image:url("images/pixels.png");
+    background-image:url("pixels.png");
     height:100%;
     margin:auto;
     display:none;
