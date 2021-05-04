@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOTS & BOXES</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<h1 id = "title">DOTS AND BOXES</h1>
+	<div class = "screen">
+		<div class = "gamescreen">
+			<div class = "msg-screen" id = "instructions">
+				<div id = "banner">PERSONAL TERMINAL</div>
+				<div class = "screen-content">
+					<div class = "files">
+						<p>FOLDERS</p>
+						<div class = "folder" onclick = "welcomePlayer();" id = "howToPlay"><p>WELCOME</p></div>
+						<div class = "folder" onclick = "selectMode();" id = "selectFolder"><p>SELECT PLAYER</p></div>
+						<div class = "folder"></div>
+						<div class = "folder"></div>
+					</div>
+					<div class = "showMsg" id = "showMsg">
+						<div id = "welcome">
+							<h1>HOW TO PLAY</h1>
+							<div class = "msg-content">
+								<p>You will be playing against your opponent to draw lines and make boxes.</p>
+								<p>The game begins with an empty grid of dots. A player who completes the fourth side of the box earns a point.</p>
+								<p>MISSION OBJECTIVE: Claim the most boxes in the grid.</p>
+								<div class =  "play-btn" id = "play-btn" onclick  = "selectMode();">NEXT</div>
+							</div>
+						</div>
+						<div id = "playermode">
+							<h1>SELECT PLAYER MODE</h1>
+							<div class = "msg-content display-players">
+								<div>
+									<h3>ONE PLAYER</h3>
+									<img width = "150" height = "150" src = "images/alien.png" onclick = "playerStart(0);" />
+								</div>
+								<div>
+									<h3>TWO PLAYERS</h3>
+									<img width = "150" height = "150" src = "images/androids.png" onclick = "playerStart(1);"/>
+								</div>
+							</div>
+						</div>
+						<div id = "profiles">
+							<div id = "oneplayer">
+								<h1>PLAY GAME AGAINST CPU?</h1>
+								<div class = "msg-content profiles">
+									<img src = "images/alien.png" width ="200" height = "200" />
+									<div>
+										<h3 onclick = "playGame(0);">START GAME</h3>
+										<h3 onclick = "selectMode();">BACK</h3>
+									</div>
+								</div>
+							</div>
+
+							<div id = "twoplayers">
+								<h1>PLAY GAME AGAINST OPPONENT?</h1>
+								<div class = "msg-content profiles">
+									<img src = "images/androids.png" width ="200" height = "200" />
+									<div>
+										<h3 onclick = "playGame(1);">START GAME</h3>
+										<h3 onclick = "selectMode();">BACK</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+<!-- GAME BOARD------------------------------------- -->
+<div class = "board" id = "board">
+	<div class = "players">
+	<h1 id = "player"><img id = "arrow1" src = "images/arrow.png" width = "25" height = "25" />PLAYER 1: <span id = "playerscore">0</h1></h1>
+	<p id = "gametext">OBJECTIVE: CLAIM THE MOST BOXES</p>
+	<h1 id = "cpu">CPU: <span id = "cpuscore">0</h1>
+	<h1 id = "playertwo" style = "color:#a81414;"><img id = "arrow2" src = "images/arrow.png" width = "25" height = "25" />PLAYER 2: <span id = "player2score">0</h1>
+</div>
+<div class = "row">
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)"id = "top11"></div>
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top12"></div>
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top13"></div>
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top14"></div>
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top15"></div>
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top16"></div>
+	<div class = "dot"></div>
+</div>
+
+<div class = "row">
+	<div class = "v-line" onclick="showLine(this)" id = "side11"></div>
+	<div class = "box" id = "box11"></div>
+	<div class = "v-line" onclick="showLine(this)" id = "side12"></div>
+	<div class = "box" id = "box12"></div>
+	<div class = "v-line"  onclick="showLine(this)" id = "side13"></div>
+  <div class = "box" id = "box13"></div>
+	<div class = "v-line"  onclick="showLine(this)" id = "side14"></div>
+	<div class = "box" id = "box14"></div>
+	<div class = "v-line"  onclick="showLine(this)" id = "side15"></div>
+	<div class = "box" id = "box15"></div>
+	<div class = "v-line"  onclick="showLine(this)" id = "side16"></div>
+	<div class = "box" id = "box16"></div>
+	<div class = "v-line"  onclick="showLine(this)" id = "side17"></div>
+</div>
+
+<div class = "row">
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top21"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick="showLine(this)" id = "top22"></div>
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top23"></div>
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top24"></div>
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top25"></div>
+	<div class = "dot"></div>
+	<div class = "h-line"  onclick="showLine(this)" id = "top26"></div>
+	<div class = "dot"></div>
+</div>
+
+<div class = "row">
+	<div class = "v-line" onclick = "showLine(this)" id = "side21"></div>
+	<div class = "box" id = "box21"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side22"></div>
+	<div class = "box" id = "box22"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side23"></div>
+  <div class = "box" id = "box23"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side24"></div>
+	<div class = "box" id = "box24"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side25"></div>
+	<div class = "box" id = "box25"></div>
+	<div class = "v-line" onclick = "showLine(this)"id = "side26"></div>
+	<div class = "box" id = "box26"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side27"></div>
+</div>
+
+<div class = "row">
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top31"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top32"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top33"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top34"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top35"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top36"></div>
+	<div class = "dot"></div>
+</div>
+<div class = "row">
+	<div class = "v-line" onclick = "showLine(this)" id = "side31"></div>
+	<div class = "box" id = "box31"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side32"></div>
+	<div class = "box" id = "box32"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side33"></div>
+  	<div class = "box" id = "box33"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side34"></div>
+	<div class = "box" id = "box34"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side35"></div>
+	<div class = "box" id = "box35"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side36"></div>
+	<div class = "box" id = "box36"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side37"></div>
+</div>
+
+<div class = "row">
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top41"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top42"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top43"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top44"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top45"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top46"></div>
+	<div class = "dot"></div>
+</div>
+
+<div class = "row">
+	<div class = "v-line" onclick = "showLine(this)" id = "side41"></div>
+	<div class = "box" id = "box41"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side42"></div>
+	<div class = "box" id = "box42"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side43"></div>
+  	<div class = "box" id = "box43"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side44"></div>
+	<div class = "box" id = "box44"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side45"></div>
+	<div class = "box" id = "box45"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side46"></div>
+	<div class = "box" id = "box46"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side47"></div>
+</div>
+<div class = "row">
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top51"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top52"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top53"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top54"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top55"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top56"></div>
+	<div class = "dot"></div>
+</div>
+
+<div class = "row">
+	<div class = "v-line" onclick = "showLine(this)" id = "side51"></div>
+	<div class = "box"  id = "box51"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side52"></div>
+	<div class = "box" id = "box52"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side53"></div>
+  	<div class = "box" id = "box53"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side54"></div>
+	<div class = "box" id = "box54"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side55"></div>
+	<div class = "box" id = "box55"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side56"></div>
+	<div class = "box" id = "box56"></div>
+	<div class = "v-line" onclick = "showLine(this)" id = "side57"></div>
+</div>
+
+<div class = "row">
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top61"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top62"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top63"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top64"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top65"></div>
+	<div class = "dot"></div>
+	<div class = "h-line" onclick = "showLine(this)" id = "top66"></div>
+	<div class = "dot"></div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN SIDEBAR ----------->
+<div class = "sidebar">
+	<div id = "bar"></div>
+	<div id = "bar"></div>
+	<div id = "bar"></div>
+	<div class = "sidebar-buttons">
+		<div class = "button" id = "button1"></div>
+		<div class = "button" id = "button2"></div>
+		<div class = "button" id = "button3"></div>
+		<div  class = "button" id = "button4"></div>
+	</div>
+	<div class = "menu-options">
+		<div id = "option">
+			<div class = "square-btn" onclick = "location.reload();"></div>
+			<h2>MAIN MENU</h2>
+		</div>
+	</div>
+</div>
+</div>
+<!-- ------------------------------ -->
+</body>
+</html>
+
+<script>
+
+// Sounds---------------------------------
+var click = new Audio("sounds/click.mp3");
+var cpuclick = new Audio("sounds/tone.mp3");
+var win = new Audio("sounds/win.mp3");
+var music = new Audio("sounds/song.mp3");
+var mouseclick = new Audio("sounds/mouseclick.mp3");
+var lose = new Audio("sounds/lose.wav");
+var playerWin = new Audio("sounds/playerwin.wav");
+var tie = new Audio("tie.wav");
+music.volume = 0.6;
+// ------------------------------------------
+
+var square_side = 1; //For selecting a square side on game board (1-left, 2-top, 3-right, 4-bottom)
+var board = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
+var cpu = 0, playertwo = 0, playerScore =  0, cpuScore =0, turn = 0, count = 0;
+var sideTaken = 0, topTaken = 0, bottomTaken = 0;
+
+
+function welcomePlayer() //Displays game instructions screen to user
+{
+	mouseclick.play();
+	document.getElementById('playermode').style.display ="none";
+	document.getElementById('profiles').style.display ="none";
+	document.getElementById('welcome').style.display = "block";
+	document.getElementById('howToPlay').style.backgroundColor = "#285e44";
+	document.getElementById('selectFolder').style.backgroundColor = "";
+}
+function selectMode() //Displays player mode screen to user
+{
+	mouseclick.play();
+	document.getElementById('welcome').style.display ="none";
+	document.getElementById('playermode').style.display = "block";
+	document.getElementById("profiles").style.display = "none";
+	document.getElementById('howToPlay').style.backgroundColor = "transparent";
+	document.getElementById('selectFolder').style.backgroundColor = "#285e44";
+}
+
+function playerStart(choice) //Displays selected player mode to user
+{
+		mouseclick.play();
+		document.getElementById("playermode").style.display = "none";
+		document.getElementById("profiles").style.display = "block";
+		if(choice == 0)
+		{
+				document.getElementById("oneplayer").style.display = "block";
+				document.getElementById("twoplayers").style.display = "none";
+		}
+		else if(choice ==1)
+		{
+			document.getElementById("oneplayer").style.display = "none";
+			document.getElementById("twoplayers").style.display = "block";
+		}
+}
+
+function playGame(choice) //Displays game board
+{
+	music.play();
+	music.loop = true;
+	document.getElementById("instructions").style.display = "none";
+	document.getElementById("board").style.display = "block";
+
+	if(choice == 0) //One-player mode (against CPU)
+	{
+		document.getElementById("cpu").style.display = "flex";
+		cpu = 1;
+	}
+	else if(choice == 1) //Two-player mode
+	{
+		document.getElementById("cpu").style.display = "none";
+		document.getElementById("arrow1").style.visibility = "visible";
+		document.getElementById("playertwo").style.display = "block";
+		playertwo = 1;
+	}
+}
+
+function showLine(line) //Displays line selected by user on game board
+{
+	if(!line.disabled == true)
+	{
+		line.style.opacity = 1;
+		line.disabled = true;
+		if(playertwo == 1) //Two player mode
+		{
+			if(turn == 0) //Player 1 turn
+			{
+				click.play();
+				line.style.backgroundColor = "#285e44";
+				checkWin(1);
+				turn = 1;
+				document.getElementById("arrow1").style.visibility= "hidden";
+				document.getElementById("arrow2").style.visibility = "visible";
+			}
+			else if(turn ==1) //Player 2 turn
+			{
+				cpuclick.play();
+				line.style.backgroundColor = "#a81414";
+				checkWin(0);
+				turn = 0;
+				document.getElementById("arrow2").style.visibility = "hidden";
+				document.getElementById("arrow1").style.visibility = "visible";
+			}
+		}
+		else if(cpu ==1) //One-player mode
+		{
+			click.play();
+			line.style.backgroundColor = "#285e44";
+			checkWin(1);
+			cpuTurn();
+		}
+
+	}
+}
+
+function writecpuTurn(line) //Writes selected line on game board
+{
+	cpuclick.play();
+	document.getElementById(line).disabled = true;
+	document.getElementById(line).style.backgroundColor = "#a81414";
+	document.getElementById(line).style.opacity = "1";
+}
+
+function cpuTurn() //CPU selects line on board 
+{
+	var foundSide = 0;
+	var sideId, topId, bottomId;
+
+ 	//square_side = 1: Take left side of box
+ 	//square_side = 2: Take top side of box
+ 	//square_side = 3: Take right side of box
+ 	//square_side = 4: Take bottom side of box
+
+	if(sideTaken == 0 || topTaken == 0 || bottomTaken == 0)
+	{
+		if(square_side > 4) //Resets square_side
+		{
+			square_side =1;
+		}
+
+		if(foundSide == 0 && sideTaken == 0 && square_side ==1 || square_side ==3) //Occupies left side or right side of box
+		{
+			for(let i  = 1; i<=5; i++)
+			{
+				for(let j = 1; j<=7; j++)
+				{
+					sideId = "side" + i + j;
+					if(!document.getElementById(sideId).disabled == true)
+					{
+						writecpuTurn(sideId);
+						square_side++;
+						foundSide = 1;
+						break;
+					}
+				}
+				if(foundSide ==1)
+				{
+					break;
+				}
+			} 
+			if(foundSide == 0) //All left & right sides of boxes on game board are occupied
+			{
+				sideTaken =1;
+			}
+		} //end 1st if-statement
+
+
+		if(foundSide == 0 && topTaken == 0 && square_side == 2) //Occupies top side of box
+		{
+			for(let i = 1; i<=6; i++)
+			{
+				for(let j = 1; j<=6; j++)
+				{
+					topId = "top" + i + j;
+					if(!document.getElementById(topId).disabled == true)
+					{
+						writecpuTurn(topId);
+						square_side++;
+						foundSide = 1;
+						break;
+					}
+				}
+				if(foundSide ==1)
+				{
+					break;
+				}
+			}	 
+			if(foundSide ==0) //All top sides of boxes on game board are occupied
+			{
+				topTaken =1;
+			}
+		} //end 2nd if-statement
+
+		if(foundSide == 0 && bottomTaken== 0 && square_side == 4) //Occupies bottom side of box
+		{
+			for(let i = 2; i<=6; i++)
+			{
+				for(let j = 1; j<=6; j++)
+				{
+					bottomId = "top" + i + j;
+					console.log(bottomId);
+					if(!document.getElementById(bottomId).disabled == true)
+					{
+						writecpuTurn(bottomId);
+						square_side++;
+						foundSide = 1;
+						break;
+					}
+				}
+				if(foundSide ==1)
+				{
+					break;
+				}
+		} 
+		if(foundSide ==0) //All bottom sides of boxes on game board are occupied
+		{
+			bottomTaken =1;
+		}
+		} //end 3rd if-statement
+
+	}
+	if(foundSide == 0) //Resets square side number if all sides are occupied for specified box side (left, top, right, bottom)
+	{
+		if(sideTaken == 1)
+		{
+			square_side = 4;
+		}
+		if(topTaken == 1 || bottomTaken ==1) 
+		{
+			square_side =1;
+		}
+		cpuTurn();
+	}
+	checkWin(0);
+
+}
+
+function checkWin(turn) //Evaluates and displays wins on game board
+{
+	let top, left, right, bottom, box;
+	//Iterates through game board array to determine occupied boxes on game board
+	for(let i = 1; i <6; i++)
+	{
+		for(let j = 1; j<7; j++)
+		{
+			top = "top"+i+j;
+			left = "side" +i+j;
+			right = "side" +i +(j+1);
+			bottom = "top"+(i+1)+j;
+			box = "box" + i + j;
+			if(board[i-1][j-1] == 0)
+			{
+				//Determines if all 4 sides of a box are taken
+				if(document.getElementById(top).disabled == true && document.getElementById(bottom).disabled ==true && document.getElementById(left).disabled == true && document.getElementById(right).disabled == true)
+				{
+					board[i-1][j-1] = 1;
+					count++;
+					win.play();
+					document.getElementById(box).style.opacity = "0.5";
+
+					if(turn == 0) //CPU or Player
+					{
+						cpuScore++;
+						document.getElementById("cpuscore").innerHTML = cpuScore;
+						document.getElementById("player2score").innerHTML = cpuScore;
+						document.getElementById(box).style.backgroundColor ="#a81414";
+					}
+					else if(turn ==1) //Player 1
+					{
+						playerScore++;
+						document.getElementById("playerscore").innerHTML = playerScore;
+						document.getElementById(box).style.backgroundColor ="#285e44";
+					}
+				}
+			}
+		}
+	}
+
+	//Game complete when 30 boxes on 5x6 board are occupied
+	if(count ==30)
+	{  
+		//Player 1 wins
+		if(playerScore > cpuScore)
+		{
+			playerWin.play();
+			if(playertwo ==1)
+			{
+					document.getElementById("gametext").innerHTML = "<span style = 'color:green;'>MISSION SUCCESS!</span> PLAYER 1 wins!";
+			}
+			else if(cpu ==1)
+			{
+					document.getElementById("gametext").innerHTML = "<span style = 'color:green;'>MISSION SUCCESS!</span> You won!";
+			}
+		}
+		//Player 2/CPU wins
+		else if(playerScore < cpuScore)
+		{
+			if(playertwo == 1)
+			{
+				playerWin.play();
+				document.getElementById("gametext").innerHTML = "<span style = 'color:red;'>MISSION SUCCESS!</span> PLAYER 2 wins!.";
+			}
+			else if(cpu ==1)
+			{
+				lose.play();
+				document.getElementById("gametext").innerHTML = "<span style = 'color:red;'>MISSION FAILED:</span> CPU wins.";
+			}
+		}
+		//Player 1 ties with Player 2/CPU
+		else if(playerScore == cpuScore)
+		{
+			tie.play();
+			document.getElementById("gametext").innerHTML = "INCONCLUSIVE: Both players won.";
+		}
+	}
+}
+</script>

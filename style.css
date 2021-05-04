@@ -1,0 +1,411 @@
+body, html
+{
+	height:100%;
+	margin:0;
+	background-color: #000000;
+	background-image:url("images/background.jpg");
+	background-size:cover;
+	font-family: 'VT323', monospace;
+}
+
+#title
+{
+    color:#ffffff;
+    text-align:center;
+    letter-spacing:20px;
+}
+#banner
+{
+    background-color:#0cba6a;
+    height:20px;
+    text-align:left;
+    color:#000000;
+    letter-spacing:3px;
+    padding-left:10px;
+}
+p
+{
+    opacity:0.8;
+    color:#ffffff;
+}
+
+
+/*----Game screen instructions screen-----*/
+.msg-screen
+{
+    color:#ffffff;
+    opacity:0.8;
+}
+.screen-content
+{
+    display:flex;
+}
+.files
+{
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    padding:15px;
+}
+.folder
+{
+
+    border:1px solid green;
+    height:75px;
+    width:150px;
+    padding-top:10px;
+}
+.showMsg
+{
+    display:flex;
+    flex-direction:column;
+    width:80%;
+    margin-top:4em;
+
+}
+.showMsg h1, .msg-content
+{
+
+    border:1px solid green;
+    text-align:left;
+    padding:5px;
+}
+.showMsg h1
+{
+
+    width:70%;
+    background-color:#0e643e;
+}
+.msg-content
+{
+    font-size:20px;
+    width:80%;
+}
+.play-btn
+{
+    padding:10px;
+    background-color:#0e643e;
+}
+.play-btn:hover
+{
+    background-color:#a9baac;
+    transition-duration: 400ms;
+    cursor:pointer;
+}
+#playermode, #profiles, #oneplayer, #twoplayers, #cpu, #playertwo
+{
+    display:none;
+}
+.display-players
+{
+    text-align:center;
+    display:flex;
+    justify-content:center;
+}
+.profiles
+{
+    display:flex;
+}
+.profiles h3
+{
+    width:200px;
+    text-align:center;
+    border-radius:10px;
+    background-color:#507c63;
+    padding:10px;
+}
+.profiles h3:hover
+{
+    background-color:#375443;
+}
+.display-players img
+{
+    border:5px inset #285e44;
+    background-color:rgb(112,140,155, 0.6);
+    margin: -10px 10px 0px 20px;
+}
+.display-players img:hover
+{
+    background-color:rgb(112,140,155, 1);
+    transition-duration:300ms;
+}
+.folder:hover
+{
+    background-color:#285e44;
+    cursor:pointer;
+    transition-duration:200ms;
+}
+#howToPlay
+{
+    background-color:#285e44;
+}
+/*----------------------------------------*/
+
+/*Game screen + sidebar*/
+.screen
+{
+	background-color:#0b3b0b;
+	display:flex;
+	margin:auto;
+	margin-top:20px;
+	height:80%;
+	width:80%;
+	border-radius:25px;
+	border:25px #101112 solid;
+}
+.gamescreen
+{
+	background-image: url("images/noise.png");
+	background-size:100% 100%;
+	height:100%;
+	width:100%;
+}
+.sidebar
+{
+	background-color:#1d2021;
+	margin-left:auto;
+	height:100%;
+	width:30%;
+}
+
+/*------Player scores display-------*/
+
+.players 
+{
+    display:flex;
+    justify-content: space-between;
+    color:#19b36b;
+}
+#player
+{
+    margin-left:1em;
+}
+#cpu, #playertwo
+{
+    margin-right:2em;
+}
+#playerscore
+{
+    color:#cfa117;
+}
+#cpuscore, #player2score
+{
+    color:#ffffff;
+}
+#arrow1, #arrow2
+{
+    visibility: hidden;
+}
+
+/*-----Game board-----*/
+.board
+{
+    background-image:url("images/pixels.png");
+    height:100%;
+    margin:auto;
+    display:none;
+
+}
+.board p
+{
+    font-size:20px;
+    animation: float 2s ease-in 3;
+    position:relative;
+}
+.dot, .h-line, .v-line
+{
+	background-color:#19b36b;
+}
+.row
+{
+	position:relative;
+	top:10%;
+	display:flex;
+	justify-content: center;
+}
+.dot
+{
+	width:10px;
+	height:10px;
+	margin:0;
+}
+.box
+{
+    width:60px;
+}
+.h-line
+{
+    width:60px;
+    height:10px;
+}
+.v-line
+{
+    height:50px;
+    width:10px;
+}
+.h-line, .v-line
+{
+	background-color:#a9baac;
+	opacity:0;
+}
+.h-line:hover, .v-line:hover
+{
+	opacity:1;
+	transition-duration:200ms;
+}
+
+
+/*-----Screen sidebar----------*/
+#bar
+{
+	margin:20px auto 10px auto;
+	background-color: #000000;
+	border-radius:25px;
+	width:50%;
+	height:20px;
+}
+
+.sidebar-buttons
+{
+	margin-top:2em;
+	height:50px;
+	display:flex;
+	justify-content: center;
+}
+.button
+{
+	border-radius:25px;
+	height:20px;
+	width:20px;
+	margin-right:15px;
+	background-color:#48cf90;
+	box-shadow: 2px 2px 18px #16e082;
+	animation:button 2s infinite;
+}
+.square-btn
+{
+    height:20px;
+    width:20px;
+    background-color:#e3e3e5;
+    border:5px outset #bec5ce;
+}
+.square-btn:hover
+{
+    background-color:#fec33c;
+    border:5px groove #ab8224;
+    transform:scale(0.85);
+    transition-duration:200ms;
+}
+#option h2
+{
+    position:relative;
+    top:-20px;
+    margin-left:10px;
+}
+#option
+{
+    color:#ffffff;
+    display:flex;
+    justify-content:center;
+}
+#button1
+{
+	animation:button1 7s infinite 2s;
+}
+#button2
+{
+	animation:button2 5s infinite 3s;
+}
+#button3
+{
+	animation:button3 7s infinite 4s;
+}
+#button4
+{
+	animation:button4 7s infinite 5s;
+}
+@keyframes button1
+{
+	25%
+	{
+		background-color:red;
+		box-shadow: 2px 2px 18px #f04f4f;
+	}
+	75%
+	{
+		background-color:#d64b24;
+		box-shadow: 2px 2px 18px #f08365;
+	}
+	100%
+	{
+		background-color:#7510e0;
+		box-shadow: 2px 2px 18px #be97e8;
+	}
+}
+@keyframes button2
+{
+	30%
+	{
+		background-color:#254a94;
+		box-shadow: 2px 2px 18px #7497db;
+	}
+	75%
+	{
+		background-color:#048f43;
+		box-shadow: 2px 2px 18px #77ba96;
+	}
+	100%
+	{
+		background-color:#48cf90;
+		box-shadow: 2px 2px 18px #16e082;
+	}
+}
+@keyframes button3
+{
+	30%
+	{
+		background-color:#c6cc0e;
+		box-shadow: 2px 2px 18px #c6cc0e;
+	}
+	100%
+	{
+		background-color:#c7850a;
+		box-shadow: 2px 2px 18px #e8bc6b;
+	}
+}
+@keyframes button4
+{
+	30%
+	{
+		background-color:red;
+		box-shadow: 2px 2px 18px #f04f4f;
+	}
+	75%
+	{
+		background-color:#51528a;
+		box-shadow: 2px 2px 18px #8687e3;
+	}
+	100%
+	{
+		background-color:#48cf90;
+		box-shadow: 2px 2px 18px #16e082;
+	}
+}
+
+
+@keyframes float
+{
+	0%
+	{
+		top:-10px;
+	}
+	50%
+	{
+		top:10px;
+	}
+	100%
+	{
+		top:-10px;
+	}
+}
+/*-------------------------------*/
